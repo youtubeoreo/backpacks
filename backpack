@@ -1,0 +1,138 @@
+long cm;
+long duration;
+long distance = 0;
+int echoPin =2;
+int triggerPin =4;
+
+void setup()
+{
+  pinMode(echoPin,INPUT);
+  pinMode(triggerPin,OUTPUT);
+  Serial.begin(9600);
+  pinMode(13,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(5,OUTPUT);
+  Serial.begin(9600);
+  pinMode(6,OUTPUT);
+  pinMode(8,OUTPUT);
+}
+
+void loop()
+{
+  ledstuff();
+  distance = getDistance();
+   Serial.println(distance);
+delay(10);
+}
+
+long getDistance()
+{
+  digitalWrite(triggerPin,LOW);
+  delayMicroseconds(2);
+  digitalWrite(triggerPin,HIGH);
+  delayMicroseconds(10);
+    digitalWrite(triggerPin,LOW);
+
+  duration = pulseIn(echoPin,HIGH);
+  
+  cm = duration/57;
+  if (cm< 1000)
+  {
+     return cm;
+  }
+    else
+{
+  return -1;
+}
+}
+
+void ledstuff() {
+    if(digitalRead(13)==HIGH)
+  {
+    digitalWrite(9,LOW);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+  }
+  if(digitalRead(13)==LOW)
+  {
+    digitalWrite(9,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+  }
+   if (digitalRead(9)==LOW)
+  {
+  digitalWrite(3,HIGH);
+  digitalWrite(13,LOW);
+  digitalWrite(5,LOW);
+}
+  if(digitalRead(3)==LOW)
+   {
+     digitalWrite(5,HIGH);
+     digitalWrite(9,LOW);
+     digitalWrite(13,LOW);
+   }
+
+  if(digitalRead(13)==HIGH)
+  {
+    digitalWrite(9,LOW);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+  }
+   if(digitalRead(13)==LOW)
+  {
+    digitalWrite(9,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+  }
+  if (digitalRead(9)==LOW)
+  {
+  digitalWrite(3,HIGH);
+  digitalWrite(13,LOW);
+  digitalWrite(5,LOW);
+}
+ if(digitalRead(3)==LOW)
+   {
+     digitalWrite(5,HIGH);
+     digitalWrite(9,LOW);
+     digitalWrite(13,LOW);
+   }
+
+  if(digitalRead(13)==HIGH)
+  {
+    digitalWrite(9,LOW);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+    
+  }
+  else if(digitalRead(13)==LOW)
+  {
+    digitalWrite(9,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(5,LOW);
+  }
+  else if (digitalRead(9)==LOW)
+  {
+  digitalWrite(3,HIGH);
+  digitalWrite(13,LOW);
+  digitalWrite(5,LOW);
+}
+   else if(digitalRead(3)==LOW)
+   {
+     digitalWrite(5,HIGH);
+     digitalWrite(9,LOW);
+     digitalWrite(13,LOW);
+     digitalWrite(4,HIGH);
+     int value = analogRead (A0);
+     Serial.println(value);
+     if (value < 750)
+     {
+       digitalWrite(8,HIGH);
+     }
+     else
+     {
+       digitalWrite(13,LOW);
+     }
+     
+   } 
+}
