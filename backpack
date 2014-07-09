@@ -20,10 +20,11 @@ void setup()
 void loop()
 {
   ledstuff();
-  distance = getDistance();
-  Serial.println(distance);
-  delay(10);
+  /*distance = getDistance();
+  Serial.println(distance);*/
+  //delay (100);
 }
+  
 
 long getDistance()
 {
@@ -48,43 +49,27 @@ long getDistance()
 
 void ledstuff() {
 
-  if(digitalRead(13) == HIGH)
+  int value = analogRead(A0);
+  Serial.println(value);
+  if(value < 400)
   {
-    digitalWrite(9,LOW);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(3, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(13, LOW);
+    delay(100);
+    digitalWrite(9, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(13, HIGH);
+    
   }
-  
-  if(digitalRead(13) == LOW)
+  else
   {
-    digitalWrite(9,HIGH);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
+    digitalWrite(9, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(13, HIGH);
   }
-  
-  if (digitalRead(9) == LOW)
-  {
-    digitalWrite(3,HIGH);
-    digitalWrite(13,LOW);
-    digitalWrite(5,LOW);
-  }
-
-   if(digitalRead(3)==LOW)
-   {
-     digitalWrite(5,HIGH);
-     digitalWrite(9,LOW);
-     digitalWrite(13,LOW);
-     digitalWrite(4,HIGH);
-     int value = analogRead (A0);
-     Serial.println(value);
-     if (value < 750)
-     {
-       digitalWrite(8,HIGH);
-     }
-     else
-     {
-       digitalWrite(8,LOW);
-     }
-     
-   } 
+ 
 }
