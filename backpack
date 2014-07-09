@@ -6,24 +6,23 @@ int triggerPin =4;
 
 void setup()
 {
+  Serial.begin(9600);
   pinMode(echoPin,INPUT);
-  pinMode(triggerPin,OUTPUT);
-  Serial.begin(9600);
-  pinMode(13,OUTPUT);
-  pinMode(9,OUTPUT);
   pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
   pinMode(5,OUTPUT);
-  Serial.begin(9600);
   pinMode(6,OUTPUT);
   pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(13,OUTPUT);
 }
 
 void loop()
 {
   ledstuff();
   distance = getDistance();
-   Serial.println(distance);
-delay(10);
+  Serial.println(distance);
+  delay(10);
 }
 
 long getDistance()
@@ -32,7 +31,7 @@ long getDistance()
   delayMicroseconds(2);
   digitalWrite(triggerPin,HIGH);
   delayMicroseconds(10);
-    digitalWrite(triggerPin,LOW);
+  digitalWrite(triggerPin,LOW);
 
   duration = pulseIn(echoPin,HIGH);
   
@@ -41,83 +40,36 @@ long getDistance()
   {
      return cm;
   }
-    else
-{
-  return -1;
-}
+ else
+  {
+    return -1;
+  }
 }
 
 void ledstuff() {
-    if(digitalRead(13)==HIGH)
-  {
-    digitalWrite(9,LOW);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
-  }
-  if(digitalRead(13)==LOW)
-  {
-    digitalWrite(9,HIGH);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
-  }
-   if (digitalRead(9)==LOW)
-  {
-  digitalWrite(3,HIGH);
-  digitalWrite(13,LOW);
-  digitalWrite(5,LOW);
-}
-  if(digitalRead(3)==LOW)
-   {
-     digitalWrite(5,HIGH);
-     digitalWrite(9,LOW);
-     digitalWrite(13,LOW);
-   }
 
-  if(digitalRead(13)==HIGH)
+  if(digitalRead(13) == HIGH)
   {
     digitalWrite(9,LOW);
     digitalWrite(3,LOW);
     digitalWrite(5,LOW);
   }
-   if(digitalRead(13)==LOW)
+  
+  if(digitalRead(13) == LOW)
   {
     digitalWrite(9,HIGH);
     digitalWrite(3,LOW);
     digitalWrite(5,LOW);
   }
-  if (digitalRead(9)==LOW)
+  
+  if (digitalRead(9) == LOW)
   {
-  digitalWrite(3,HIGH);
-  digitalWrite(13,LOW);
-  digitalWrite(5,LOW);
-}
- if(digitalRead(3)==LOW)
-   {
-     digitalWrite(5,HIGH);
-     digitalWrite(9,LOW);
-     digitalWrite(13,LOW);
-   }
+    digitalWrite(3,HIGH);
+    digitalWrite(13,LOW);
+    digitalWrite(5,LOW);
+  }
 
-  if(digitalRead(13)==HIGH)
-  {
-    digitalWrite(9,LOW);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
-    
-  }
-  else if(digitalRead(13)==LOW)
-  {
-    digitalWrite(9,HIGH);
-    digitalWrite(3,LOW);
-    digitalWrite(5,LOW);
-  }
-  else if (digitalRead(9)==LOW)
-  {
-  digitalWrite(3,HIGH);
-  digitalWrite(13,LOW);
-  digitalWrite(5,LOW);
-}
-   else if(digitalRead(3)==LOW)
+   if(digitalRead(3)==LOW)
    {
      digitalWrite(5,HIGH);
      digitalWrite(9,LOW);
@@ -131,7 +83,7 @@ void ledstuff() {
      }
      else
      {
-       digitalWrite(13,LOW);
+       digitalWrite(8,LOW);
      }
      
    } 
