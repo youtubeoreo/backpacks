@@ -44,7 +44,7 @@ long getDistance()
 }
 
 void ledstuff() {
-
+//reads the value from A0 which is the photo sensor light
   int value = analogRead(A0);
   Serial.println(value);
   if(value < 400)
